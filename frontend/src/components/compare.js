@@ -1,7 +1,8 @@
-const API = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { calculateHealthScore, getHealthStatus } from "../utils/health";
+
+const API = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
 
 // ─── Shared Autocomplete ──────────────────────────────────────────────────────
 
