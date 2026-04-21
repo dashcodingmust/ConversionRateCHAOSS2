@@ -21,7 +21,7 @@ D1 — more than 20 contributions
 
 D2 — more than threshold value contributions
 
-Conversion Rate = (D1 or D2 contributors / D0 contributors) × 100
+Conversion Rate = ( D2 contributors / total contributors) 
 
 
 Tech Stack
@@ -36,10 +36,10 @@ GitHub REST API
 
 
 Run Locally
-Backend:
+Backend/src:
 ```
 cd backend
-pip install -r requirements.txt
+pip install -r ..\requirements.txt
 uvicorn main:app --reload
 ```
 
