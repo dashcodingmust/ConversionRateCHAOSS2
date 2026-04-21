@@ -47,7 +47,7 @@ function TokenBanner({ keyInfo, onSwitch }) {
     if (name === active) { setOpen(false); return; }
     setSwitching(true);
     try {
-      await axios.post("http://127.0.0.1:8000/keys/active", { name });
+      await axios.post(`${API}/keys/active`, { name });
       onSwitch(name);
     } catch (e) {
       console.error("Failed to switch key", e);
@@ -112,7 +112,7 @@ function RepoAutocomplete({ owner, value, onChange }) {
       if (owner === fetchedOwner) return;
       setLoading(true);
       try {
-        const res = await axios.get(`http://127.0.0.1:8000/repos/${owner.trim()}`);
+        const res = await axios.get(`${API}/repos/${owner.trim()}`);
         setRepos(res.data);
         setFetchedOwner(owner.trim());
       } catch { setRepos([]); } finally { setLoading(false); }
@@ -257,7 +257,7 @@ function App() {
 
   // Load key info on mount
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/keys")
+    axios.get(`${API}/keys`)
       .then((res) => setKeyInfo(res.data))
       .catch(() => setKeyInfo(null));
   }, []);
@@ -270,7 +270,7 @@ function App() {
     if (!owner.trim() || !repo.trim()) { setError("Please enter both a repository owner and name."); return; }
     setLoading(true); setError(null); setResults(null);
     try {
-      const response = await axios.post("http://127.0.0.1:8000/analyze", {
+      const response = await axios.post(`${API}/analyze`, {
         owner: owner.trim(), repo: repo.trim(), threshold, days,
       });
       setResults(response.data);
