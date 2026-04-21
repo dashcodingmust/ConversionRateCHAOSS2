@@ -18,7 +18,7 @@ function RepoAutocomplete({ owner, value, onChange }) {
       if (owner.trim() === fetchedOwner) return;
       setLoading(true);
       try {
-        const res = await axios.get(`http://127.0.0.1:8000/repos/${owner.trim()}`);
+        const res = await axios.get(`${API}/repos/${owner.trim()}`);
         setRepos(res.data);
         setFetchedOwner(owner.trim());
       } catch { setRepos([]); } finally { setLoading(false); }
@@ -96,7 +96,7 @@ function ComparePanel({ side, onResult }) {
     if (!owner.trim() || !repo.trim()) { setError("Enter both owner and repo."); return; }
     setLoading(true); setError(null);
     try {
-      const res = await axios.post("http://127.0.0.1:8000/analyze", { owner: owner.trim(), repo: repo.trim(), threshold: 50, days: 90 });
+      const res = await axios.post(`${API}/analyze`, { owner: owner.trim(), repo: repo.trim(), threshold: 50, days: 90 });
       onResult({ owner: owner.trim(), repo: repo.trim(), data: res.data });
     } catch (err) { setError(err?.response?.data?.detail || err?.message || "Failed to fetch."); }
     setLoading(false);
