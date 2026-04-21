@@ -1,4 +1,3 @@
-const API = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import axios from "axios";
 import Card from "./components/card";
@@ -18,6 +17,7 @@ import {
 import { Line, Doughnut } from "react-chartjs-2";
 
 ChartJS.register(BarElement, LineElement, ArcElement, PointElement, CategoryScale, LinearScale, Tooltip, Legend);
+const API = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
 
 const TIME_WINDOWS = [
   { label: "30d", value: 30 },
